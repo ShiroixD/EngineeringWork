@@ -50,9 +50,10 @@ public class ItemsCollision : MonoBehaviour
             if (colProps.Name == myProps.Name && colProps.Type == ObjectType.Item)
             {
                 InteractionBehaviour behaviour = collision.collider.gameObject.GetComponent<InteractionBehaviour>();
-                /*behaviour.ignoreContact = true;
-                behaviour.ignoreGrasping = true;*/
-                //collision.collider.gameObject.SetActive(false);
+                behaviour.ignoreGrasping = true;
+                behaviour.ignoreContact = true;
+                behaviour.ignorePrimaryHover = true;
+                collision.collider.gameObject.SetActive(false);
                 colProps.ShouldDisappear = true;
                 ShapesCubeController.DecreaseShapesCubeParts();
                 gameObject.SetActive(false);
