@@ -7,6 +7,7 @@ TagManager:
   - GameCube
   - Items
   - Ground
+  - GameCubeController
   layers:
   - Default
   - TransparentFX
