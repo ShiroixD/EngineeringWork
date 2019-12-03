@@ -693,6 +693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: ShapesCube
   Type: 1
+  ShouldDisappear: 0
 --- !u!114 &125681542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6390,6 +6391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Heart
   Type: 2
+  ShouldDisappear: 0
 --- !u!1 &1000013516162023
 GameObject:
   m_ObjectHideFlags: 0
@@ -6467,6 +6469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Star
   Type: 2
+  ShouldDisappear: 0
 --- !u!1 &1000014273610396
 GameObject:
   m_ObjectHideFlags: 0
@@ -6544,6 +6547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Hexgon
   Type: 2
+  ShouldDisappear: 0
 --- !u!4 &4000010656232869
 Transform:
   m_ObjectHideFlags: 0
@@ -7035,6 +7039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Cubie
   Type: 2
+  ShouldDisappear: 0
 --- !u!1001 &2525503996244950292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7260,6 +7265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: SphereGemLarge
   Type: 2
+  ShouldDisappear: 0
 --- !u!1001 &4941494632608368410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9137,6 +9143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Diamondo
   Type: 2
+  ShouldDisappear: 0
 --- !u!33 &9140523931809856869
 MeshFilter:
   m_ObjectHideFlags: 0
