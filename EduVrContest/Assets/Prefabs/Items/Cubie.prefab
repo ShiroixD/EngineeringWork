@@ -14,11 +14,10 @@ GameObject:
   - component: {fileID: 679189218778870178}
   - component: {fileID: 679189218778870179}
   - component: {fileID: 679189218778870191}
-  - component: {fileID: 679189218778870190}
-  - component: {fileID: 679189218778870189}
+  - component: {fileID: 114662436530307834}
   m_Layer: 0
   m_Name: Cubie
-  m_TagString: Items
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,7 +141,7 @@ MonoBehaviour:
     layerIndex: 0
   _eventTable:
     _entries: []
---- !u!114 &679189218778870190
+--- !u!114 &114662436530307834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,20 +150,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 679189218778870181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 427d8ebd0493e854fb4075e039652e92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Cubie
-  Type: 0
---- !u!114 &679189218778870189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679189218778870181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b8315cad7755c4a91e39a43c873743, type: 3}
+  m_Script: {fileID: 11500000, guid: 0edf02e269a50b44692a81dec564a14c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

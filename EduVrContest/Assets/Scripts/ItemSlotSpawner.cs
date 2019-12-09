@@ -5,14 +5,18 @@ using UnityEngine;
 public class ItemSlotSpawner : MonoBehaviour
 {
     private GameObject _currentItem;
-    private uint _currentItemIndex;
+    private List<uint> usedItemsIndexes;
+    private System.Random rnd = new System.Random();
     public GameObject[] Items;
+    public Vector3 ItemScale;
 
     void Start()
     {
-        _currentItemIndex = 0;
-        _currentItem = Instantiate(Items[_currentItemIndex], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity, gameObject.transform);
-        _currentItem.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        usedItemsIndexes = new List<uint>();
+        uint index = (uint)rnd.Next(Items.Length);
+        usedItemsIndexes.Add(index);
+        _currentItem = Instantiate(Items[index], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity, gameObject.transform);
+        _currentItem.transform.localScale = ItemScale;
     }
 
     void Update()
@@ -20,13 +24,18 @@ public class ItemSlotSpawner : MonoBehaviour
         
     }
 
-    public bool NextItem()
+    public bool SpawnNextItem()
     {
-        _currentItemIndex++;
-        if (_currentItemIndex < Items.Length)
+        if (usedItemsIndexes.Count < Items.Length)
         {
-            _currentItem = Instantiate(Items[_currentItemIndex], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity, gameObject.transform);
-            _currentItem.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            uint number = (uint)rnd.Next(Items.Length);
+            while (usedItemsIndexes.Contains(number))
+            {
+                number = (uint)rnd.Next(Items.Length);
+            }
+            usedItemsIndexes.Add(number);
+            _currentItem = Instantiate(Items[number], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity, gameObject.transform);
+            _currentItem.transform.localScale = ItemScale;
             return true;
         } else
         {

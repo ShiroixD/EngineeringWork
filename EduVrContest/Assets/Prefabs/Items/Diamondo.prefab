@@ -14,11 +14,10 @@ GameObject:
   - component: {fileID: 2347208145158206395}
   - component: {fileID: 2347208145158206392}
   - component: {fileID: 2347208145158206396}
-  - component: {fileID: 2347208145158206399}
-  - component: {fileID: 2347208145158206398}
+  - component: {fileID: 114235149223467926}
   m_Layer: 0
   m_Name: Diamondo
-  m_TagString: Items
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,7 +141,7 @@ MonoBehaviour:
     layerIndex: 0
   _eventTable:
     _entries: []
---- !u!114 &2347208145158206399
+--- !u!114 &114235149223467926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,20 +150,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2347208145158206534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 427d8ebd0493e854fb4075e039652e92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Diamondo
-  Type: 0
---- !u!114 &2347208145158206398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2347208145158206534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b8315cad7755c4a91e39a43c873743, type: 3}
+  m_Script: {fileID: 11500000, guid: 0edf02e269a50b44692a81dec564a14c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

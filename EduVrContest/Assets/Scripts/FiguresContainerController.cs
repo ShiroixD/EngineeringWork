@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShapesCubeController : MonoBehaviour
+public class FiguresContainerController : MonoBehaviour
 {
     public ItemSlotSpawner ItemSlotSpawner;
     void Start()
@@ -15,9 +15,9 @@ public class ShapesCubeController : MonoBehaviour
         
     }
 
-    public void DecreaseShapesCubeParts()
+    public void DecreaseFiguresSlots()
     {
-        if (!ItemSlotSpawner.NextItem())
+        if (!ItemSlotSpawner.SpawnNextItem())
         {
             gameObject.SetActive(false);
         }
