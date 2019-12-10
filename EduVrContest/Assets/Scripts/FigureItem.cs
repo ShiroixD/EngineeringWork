@@ -8,6 +8,7 @@ public class FigureItem : MonoBehaviour
 {
     private Vector3 _itemSpawnLocation;
     private InteractionBehaviour _intObj;
+    public FigureName FigureName;
 
     void Start()
     {
@@ -33,7 +34,11 @@ public class FigureItem : MonoBehaviour
             return;
         }
 
-        if (collision.collider.tag == "FigureSlot")
+        if (collision.collider.tag == "FigureSlot" && 
+            gameObject.GetComponent<FigureItem>().FigureName.Equals(
+                collision.collider.GetComponent<FigureSlot>().FigureName
+            )
+        )
         {
             _intObj.ignoreGrasping = true;
             _intObj.ignoreContact = true;

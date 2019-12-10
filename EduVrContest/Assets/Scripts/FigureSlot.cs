@@ -5,6 +5,7 @@ using UnityEngine;
 public class FigureSlot : MonoBehaviour
 {
     private FiguresContainerController _figuresContainerController;
+    public FigureName FigureName;
     void Start()
     {
         _figuresContainerController = GameObject.FindWithTag("FiguresContainer").GetComponent<FiguresContainerController>();
@@ -22,7 +23,11 @@ public class FigureSlot : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Item")
+        if (collision.collider.tag == "Item" &&
+            gameObject.GetComponent<FigureSlot>().FigureName.Equals(
+                collision.collider.GetComponent<FigureItem>().FigureName
+            )
+        )
         {
             _figuresContainerController.DecreaseFiguresSlots();
             Disappear();
