@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _displayInGameView: 0
-  _enabledForBuild: 1
+  _enabledForBuild: 0
   _sphereMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   _gizmoShader: {fileID: 4800000, guid: 309635e4933310a4d98f0e016c806769, type: 3}
 --- !u!4 &377526879
@@ -747,6 +747,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FiguresContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3417656139333355497, guid: f4a42df2690953a41a078f9f0f527927,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3417656139333355502, guid: f4a42df2690953a41a078f9f0f527927,
         type: 3}
