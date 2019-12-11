@@ -4,10 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - GameCube
-  - Items
   - Ground
-  - GameCubeController
+  - GameManager
+  - MinigameController
+  - Item
+  - FigureSlot
+  - ItemSpawn
+  - FiguresContainer
   layers:
   - Default
   - TransparentFX
