@@ -9,6 +9,7 @@ public class ItemSlotSpawner : MonoBehaviour
     private System.Random rnd = new System.Random();
     public GameObject[] Items;
     public Vector3 ItemScale;
+    public GameObject Effect;
 
     void Start()
     {
@@ -17,6 +18,7 @@ public class ItemSlotSpawner : MonoBehaviour
         usedItemsIndexes.Add(index);
         _currentItem = Instantiate(Items[index], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity, gameObject.transform);
         _currentItem.transform.localScale = ItemScale;
+        ShowEffect();
     }
 
     void Update()
@@ -24,10 +26,23 @@ public class ItemSlotSpawner : MonoBehaviour
         
     }
 
+    IEnumerator EffectDelay()
+    {
+        Effect.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        Effect.SetActive(false);
+    }
+
+    public void ShowEffect()
+    {
+        StartCoroutine("EffectDelay");
+    }
+
     public bool SpawnNextItem()
     {
         if (usedItemsIndexes.Count < Items.Length)
         {
+            ShowEffect();
             uint number = (uint)rnd.Next(Items.Length);
             while (usedItemsIndexes.Contains(number))
             {

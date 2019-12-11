@@ -6,6 +6,7 @@ public class FigureSlot : MonoBehaviour
 {
     private FiguresContainerController _figuresContainerController;
     public FigureName FigureName;
+    public GameObject Effect;
     void Start()
     {
         _figuresContainerController = GameObject.FindWithTag("FiguresContainer").GetComponent<FiguresContainerController>();
@@ -18,7 +19,20 @@ public class FigureSlot : MonoBehaviour
 
     void Disappear()
     {
+        _figuresContainerController.DecreaseFiguresSlots();
         Destroy(gameObject);
+    }
+
+    IEnumerator EffectDelay()
+    {
+        Effect.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        Disappear();
+    }
+
+    public void ShowEffect()
+    {
+        StartCoroutine("EffectDelay");
     }
 
     void OnCollisionEnter(Collision collision)
@@ -29,8 +43,7 @@ public class FigureSlot : MonoBehaviour
             )
         )
         {
-            _figuresContainerController.DecreaseFiguresSlots();
-            Disappear();
+            ShowEffect();
         }
     }
 }

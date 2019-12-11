@@ -7,12 +7,15 @@ using Leap.Unity.Interaction;
 public class FigureItem : MonoBehaviour
 {
     private Vector3 _itemSpawnLocation;
+    private ItemSlotSpawner _itemSlotSpawner;
     private InteractionBehaviour _intObj;
     public FigureName FigureName;
 
     void Start()
     {
-        _itemSpawnLocation = GameObject.FindWithTag("ItemSpawn").transform.position;
+        GameObject itemSpawner = GameObject.FindWithTag("ItemSpawn");
+        _itemSpawnLocation = itemSpawner.transform.position;
+        _itemSlotSpawner = itemSpawner.GetComponent<ItemSlotSpawner>();
         _intObj = GetComponent<InteractionBehaviour>();
     }
 
@@ -31,6 +34,7 @@ public class FigureItem : MonoBehaviour
         if (collision.collider.tag == "Ground")
         {
             transform.position = _itemSpawnLocation;
+            _itemSlotSpawner.ShowEffect();
             return;
         }
 
