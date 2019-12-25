@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class ScreenFadeEffect : MonoBehaviour
 {
     private Animator FadeEffectAnimator;
-    public bool AnimationFinished;
+    public bool AnimationIsPlaying;
     public Image BlackScreenImage;
 
     void Start()
     {
-        AnimationFinished = true;
+        AnimationIsPlaying = false;
         FadeEffectAnimator = GetComponent<Animator>();
     }
 
@@ -20,21 +20,28 @@ public class ScreenFadeEffect : MonoBehaviour
         
     }
 
-    public void FadeIdleEffect()
+    public void AnimationStarted()
     {
-        FadeEffectAnimator.SetTrigger("FadeIdle");
-        AnimationFinished = true;
+        AnimationIsPlaying = true;
+    }
+
+    public void AnimationFinished()
+    {
+        AnimationIsPlaying = false;
     }
 
     public void FadeInEffect()
     {
         FadeEffectAnimator.SetTrigger("FadeIn");
-        AnimationFinished = false;
     }
 
     public void FadeOutEffect()
     {
         FadeEffectAnimator.SetTrigger("FadeOut");
-        AnimationFinished = false;
+    }
+
+    public void FadeBlackEffect()
+    {
+        FadeEffectAnimator.SetTrigger("FadeBlack");
     }
 }

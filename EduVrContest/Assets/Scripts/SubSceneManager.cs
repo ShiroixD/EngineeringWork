@@ -15,6 +15,7 @@ public class SubSceneManager : MonoBehaviour
 
     void Start()
     {
+        _currentSubScene = null;
         parameters = new LoadSceneParameters(LoadSceneMode.Additive);
         ChangingScene = false;
     }
@@ -26,6 +27,11 @@ public class SubSceneManager : MonoBehaviour
 
     private IEnumerator LoadSubSceneAsync(string sceneName)
     {
+        if (_currentSubScene != null)
+        {
+            ChangingScene = true;
+            StartCoroutine(UnloadCurrentSubSceneAsync());
+        }
         while(ChangingScene)
         {
             yield return null;
@@ -34,8 +40,14 @@ public class SubSceneManager : MonoBehaviour
         {
             ChangingScene = true;
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName, parameters);
+            asyncOperation.allowSceneActivation = false;
             while (!asyncOperation.isDone)
             {
+                if (!ScreenFadeEffect.AnimationIsPlaying)
+                {
+                    ScreenFadeEffect.FadeInEffect();
+                    asyncOperation.allowSceneActivation = true;
+                }
                 yield return null;
             }
             _currentSubScene = SceneManager.GetSceneByName(sceneName);
@@ -47,11 +59,6 @@ public class SubSceneManager : MonoBehaviour
             }
             SceneManager.SetActiveScene((Scene)_currentSubScene);
             _currentWorldController = GameObject.FindGameObjectWithTag("GameController");
-            ScreenFadeEffect.FadeInEffect();
-            while (!ScreenFadeEffect.AnimationFinished)
-            {
-                yield return null;
-            }
             ChangingScene = false;
             Debug.Log("Loaded subscene: " + ((Scene)_currentSubScene).name);
         }
@@ -61,15 +68,10 @@ public class SubSceneManager : MonoBehaviour
 
     private IEnumerator UnloadCurrentSubSceneAsync()
     {
-        while (ChangingScene)
-        {
-            yield return null;
-        }
         if (_currentSubScene != null)
         {
-            ChangingScene = true;
             ScreenFadeEffect.FadeOutEffect();
-            while(!ScreenFadeEffect.AnimationFinished)
+            while(ScreenFadeEffect.AnimationIsPlaying)
             {
                 yield return null;
             }
@@ -90,10 +92,6 @@ public class SubSceneManager : MonoBehaviour
 
     public void LoadSubScene(string sceneName)
     {
-        if (_currentSubScene != null)
-        {
-            UnloadCurrentSubScene();
-        }
         if (ScenesNames.Contains(sceneName))
         {
             StartCoroutine(LoadSubSceneAsync(sceneName));
@@ -101,10 +99,5 @@ public class SubSceneManager : MonoBehaviour
         {
             Debug.Log("Scene " + sceneName + " hasn't been found");
         }
-    }
-
-    public void UnloadCurrentSubScene()
-    {
-        StartCoroutine(UnloadCurrentSubSceneAsync());
     }
 }
