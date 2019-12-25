@@ -39,9 +39,12 @@ public class SubSceneManager : MonoBehaviour
                 yield return null;
             }
             _currentSubScene = SceneManager.GetSceneByName(sceneName);
-            GameObject physicsCallbacksProvider = GameObject.Find("Physics Callbacks Provider");
             GameObject sceneController = GameObject.FindGameObjectWithTag("GameController");
-            physicsCallbacksProvider.transform.parent = sceneController.transform;
+            GameObject physicsCallbacksProvider = GameObject.Find("Physics Callbacks Provider");
+            if (physicsCallbacksProvider != null)
+            {
+                physicsCallbacksProvider.transform.parent = sceneController.transform;
+            }
             SceneManager.SetActiveScene((Scene)_currentSubScene);
             _currentWorldController = GameObject.FindGameObjectWithTag("GameController");
             ScreenFadeEffect.FadeInEffect();
