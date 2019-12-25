@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private string _currentGameSceneName;
     SubSceneManager _subSceneManager;
 
     void Start()
     {
         _subSceneManager = GetComponent<SubSceneManager>();
-    }
+        _currentGameSceneName = "ForestScene";
+}
 
     void Update()
     {
@@ -17,5 +19,10 @@ public class GameManager : MonoBehaviour
         {
             _subSceneManager.LoadSubScene("ForestScene");
         }
+    }
+
+    public void ReloadGame()
+    {
+        _subSceneManager.LoadSubScene(_currentGameSceneName);
     }
 }
