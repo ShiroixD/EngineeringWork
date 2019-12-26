@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SubSceneManager : MonoBehaviour
 {
-    public List<string> ScenesNames;
+    private List<string> _scenesNames;
     private LoadSceneParameters parameters;
     private Scene? _currentSubScene;
     private GameObject _currentWorldController;
@@ -13,16 +13,35 @@ public class SubSceneManager : MonoBehaviour
     public ScreenFadeEffect ScreenFadeEffect;
     public bool ChangingScene;
 
-    void Start()
+    void Awake()
     {
+        _scenesNames = new List<string>();
         _currentSubScene = null;
         parameters = new LoadSceneParameters(LoadSceneMode.Additive);
         ChangingScene = false;
+        LoadScenesNames();
+    }
+    void Start()
+    {
+        
     }
 
     void Update()
     {
         
+    }
+
+    private void LoadScenesNames()
+    {
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
+        for (int i = 0; i < sceneCount; i++)
+        {
+            string sceneName = System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(i));
+            if (!sceneName.Equals("MainScene"))
+            {
+                _scenesNames.Add(sceneName);
+            }
+        }
     }
 
     private IEnumerator LoadSubSceneAsync(string sceneName)
@@ -36,7 +55,7 @@ public class SubSceneManager : MonoBehaviour
         {
             yield return null;
         }
-        if (ScenesNames.Contains(sceneName))
+        if (_scenesNames.Contains(sceneName))
         {
             ChangingScene = true;
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName, parameters);
@@ -58,7 +77,6 @@ public class SubSceneManager : MonoBehaviour
                 physicsCallbacksProvider.transform.parent = sceneController.transform;
             }
             SceneManager.SetActiveScene((Scene)_currentSubScene);
-            _currentWorldController = GameObject.FindGameObjectWithTag("GameController");
             ChangingScene = false;
             Debug.Log("Loaded subscene: " + ((Scene)_currentSubScene).name);
         }
@@ -75,7 +93,6 @@ public class SubSceneManager : MonoBehaviour
             {
                 yield return null;
             }
-            _currentWorldController.GetComponent<ISceneController>().EndScene();
             string sceneName = ((Scene)_currentSubScene).name;
             AsyncOperation asyncOperation = SceneManager.UnloadSceneAsync((Scene)_currentSubScene, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
             while (!asyncOperation.isDone)
@@ -92,10 +109,11 @@ public class SubSceneManager : MonoBehaviour
 
     public void LoadSubScene(string sceneName)
     {
-        if (ScenesNames.Contains(sceneName))
+        if (_scenesNames.Contains(sceneName) && !ChangingScene)
         {
             StartCoroutine(LoadSubSceneAsync(sceneName));
-        } else
+        }
+        else
         {
             Debug.Log("Scene " + sceneName + " hasn't been found");
         }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ForestWorldController : MonoBehaviour, ISceneController
 {
+    public PlayerHelper PlayerHelper;
+
     void Start()
     {
         
@@ -14,27 +16,13 @@ public class ForestWorldController : MonoBehaviour, ISceneController
         
     }
 
-    public void StartScene()
+    public void InitializeScene()
     {
 
     }
 
-    public void RestartScene()
+    public void FinishScene()
     {
-
-    }
-
-    public void EndScene()
-    {
-        
-    }
-
-    public void CleanUp()
-    {
-        GameObject[] sceneGameObjects = gameObject.scene.GetRootGameObjects();
-        foreach (GameObject obj in sceneGameObjects)
-        {
-            obj.SetActive(false);
-        }
+        PlayerHelper.ReturnToControlRoom();
     }
 }

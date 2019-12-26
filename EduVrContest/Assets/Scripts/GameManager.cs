@@ -4,25 +4,56 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private string _currentGameSceneName;
-    SubSceneManager _subSceneManager;
+    private Dictionary<string, string> _gameSceneNameMap;
+    private string _currentGameName;
+    private SubSceneManager _subSceneManager;
 
+    void Awake()
+    {
+        _gameSceneNameMap = new Dictionary<string, string>();
+        _gameSceneNameMap.Add("ControlRoom", "ControlRoomScene");
+        _gameSceneNameMap.Add("Forest", "ForestScene");
+        _gameSceneNameMap.Add("Tavern", "TavernScene");
+    }
     void Start()
     {
         _subSceneManager = GetComponent<SubSceneManager>();
-        _currentGameSceneName = "ForestScene";
-}
+        _currentGameName = "ControlRoom";
+        LoadGame(_currentGameName);
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            _subSceneManager.LoadSubScene("ForestScene");
+            LoadGame("ControlRoom");
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            ReloadGame();
+        }
+    }
+
+    public void LoadGame(string gameName)
+    {
+        if (_gameSceneNameMap.ContainsKey(gameName) && !_subSceneManager.ChangingScene)
+        {
+            _currentGameName = gameName;
+            _subSceneManager.LoadSubScene(_gameSceneNameMap[_currentGameName]);
         }
     }
 
     public void ReloadGame()
     {
-        _subSceneManager.LoadSubScene(_currentGameSceneName);
+        if (!_subSceneManager.ChangingScene)
+        {
+            _subSceneManager.LoadSubScene(_gameSceneNameMap[_currentGameName]);
+        }
+    }
+
+    public void ShowInfo()
+    {
+
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 interface ISceneController
 {
-    void StartScene();
-    void RestartScene();
-    void EndScene();
-    void CleanUp();
+    void InitializeScene();
+    void FinishScene();
 }

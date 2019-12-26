@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 2c18e3549cd70d741b2fb0c32d8b8e1a
   - enabled: 1
+    path: Assets/Scenes/ControlRoomScene.unity
+    guid: 65da0b662a2054943b1aef1a46d7fd3a
+  - enabled: 1
     path: Assets/Scenes/ForestScene.unity
     guid: 3306698d48554f145aec6a70df7059d8
   - enabled: 1

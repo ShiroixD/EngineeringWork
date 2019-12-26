@@ -851,6 +851,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1141375544}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1141375546 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4236459396694998983, guid: bb98b63dde9ce7e4a876dae38504dd22,
+    type: 3}
+  m_PrefabInstance: {fileID: 1141375544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc67cbab0571434a8ffac065b390f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1458373202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1356,6 +1368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6236b95b9597e704495bf6a65448bfb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerHelper: {fileID: 0}
 --- !u!1 &2048376302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,6 +1565,11 @@ PrefabInstance:
       propertyPath: ShapeHandlers
       value: 
       objectReference: {fileID: 85932005}
+    - target: {fileID: 3417656139333355500, guid: f4a42df2690953a41a078f9f0f527927,
+        type: 3}
+      propertyPath: PlayerHelper
+      value: 
+      objectReference: {fileID: 1141375546}
     - target: {fileID: 3417656140527048196, guid: f4a42df2690953a41a078f9f0f527927,
         type: 3}
       propertyPath: interactionManager

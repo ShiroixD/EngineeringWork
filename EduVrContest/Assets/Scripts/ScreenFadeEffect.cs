@@ -9,10 +9,14 @@ public class ScreenFadeEffect : MonoBehaviour
     public bool AnimationIsPlaying;
     public Image BlackScreenImage;
 
-    void Start()
+    private void Awake()
     {
         AnimationIsPlaying = false;
         FadeEffectAnimator = GetComponent<Animator>();
+    }
+    void Start()
+    {
+        
     }
 
     void Update()
