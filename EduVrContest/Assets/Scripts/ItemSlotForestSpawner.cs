@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSlotSpawner : MonoBehaviour
+public class ItemSlotForestSpawner : MonoBehaviour
 {
     private GameObject _currentItem;
     private List<uint> usedItemsIndexes;

@@ -5,7 +5,7 @@ using Leap.Unity.Interaction;
 
 public class FiguresContainerController : MonoBehaviour
 {
-    public ItemSlotSpawner ItemSlotSpawner;
+    public ItemSlotForestSpawner ItemSlotSpawner;
     public GameObject Cube;
     public GameObject ShapeHandlers;
     public GameObject Effect;

@@ -7,7 +7,7 @@ using Leap.Unity.Interaction;
 public class FigureItem : MonoBehaviour
 {
     private Vector3 _itemSpawnLocation;
-    private ItemSlotSpawner _itemSlotSpawner;
+    private ItemSlotForestSpawner _itemSlotSpawner;
     private InteractionBehaviour _intObj;
     public FigureName FigureName;
 
@@ -15,7 +15,7 @@ public class FigureItem : MonoBehaviour
     {
         GameObject itemSpawner = GameObject.FindWithTag("ItemSpawn");
         _itemSpawnLocation = itemSpawner.transform.position;
-        _itemSlotSpawner = itemSpawner.GetComponent<ItemSlotSpawner>();
+        _itemSlotSpawner = itemSpawner.GetComponent<ItemSlotForestSpawner>();
         _intObj = GetComponent<InteractionBehaviour>();
     }
 
