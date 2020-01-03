@@ -5582,6 +5582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 257747a8e40203d4bab1476dfc7c55c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FoodRequirementsMaxAmount: 10
   PlayerHelper: {fileID: 4236459396409651176}
   ItemSpawner: {fileID: 1211493144}
   VegetablesIcons:
@@ -5610,6 +5611,16 @@ MonoBehaviour:
   - {fileID: 5853208868304998476, guid: 4dd86df7864b3b84e84d6929155c255a, type: 3}
   - {fileID: 4717877665019683989, guid: 4b0bf23838290434fad8cb437328488f, type: 3}
   - {fileID: 2989861562810628838, guid: 6454089d38787ab4fb13475ea8df5541, type: 3}
+  FoodUiImages:
+  - {fileID: 1204908241}
+  - {fileID: 292869196}
+  - {fileID: 1598972891}
+  - {fileID: 956648102}
+  FoodUiTexts:
+  - {fileID: 86855547}
+  - {fileID: 1588537898}
+  - {fileID: 39944592}
+  - {fileID: 1374357284}
 --- !u!1 &445679550
 GameObject:
   m_ObjectHideFlags: 0
