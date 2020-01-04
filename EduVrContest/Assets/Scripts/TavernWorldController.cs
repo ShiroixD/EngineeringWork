@@ -15,19 +15,18 @@ public class TavernWorldController : MonoBehaviour, ISceneController
     public GameObject[] FruitsItems;
     public Image[] FoodUiImages;
     public Text[] FoodUiTexts;
+    public string[] FoodNames;
 
     private System.Random rnd = new System.Random();
-    private string[] _foodNames;
     private Dictionary<string, ImageItem> _iconsItemsDict;
     private FoodRequirement[] _foodRequirements;
     private int _currentFoodRequirementIndex;
     private FoodRequirementUI[] _uiElements;
+    private int _currentRound;
 
     void Awake()
     {
         _iconsItemsDict = new Dictionary<string, ImageItem>();
-        _foodRequirements = new FoodRequirement[FOOD_REQUIREMENTS_SLOTS];
-        _currentFoodRequirementIndex = 0;
     }
 
     void Start()
@@ -37,11 +36,20 @@ public class TavernWorldController : MonoBehaviour, ISceneController
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            CreateItemQuery(1);
+        }
 
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            CreateItemQuery(2);
+        }
     }
 
     public void InitializeScene()
     {
+        _currentRound = 1;
         ParseFoodIconsItems();
         ParseFoodUiImagesTexts();
         CreateItemQuery(1);
@@ -54,13 +62,13 @@ public class TavernWorldController : MonoBehaviour, ISceneController
 
     public void ParseFoodIconsItems()
     {
-        _foodNames = new string[VegetablesItems.Length + FruitsItems.Length];
+        FoodNames = new string[VegetablesItems.Length + FruitsItems.Length];
         if (VegetablesIcons.Length == VegetablesItems.Length)
         {
             int size = VegetablesItems.Length;
             for (int i = 0; i < size; i++)
             {
-                _foodNames[i] = VegetablesItems[i].name;
+                FoodNames[i] = VegetablesItems[i].name;
                 _iconsItemsDict.Add(VegetablesItems[i].name, new ImageItem(VegetablesIcons[i], VegetablesItems[i], "Vegetable"));
             }
         }
@@ -69,7 +77,7 @@ public class TavernWorldController : MonoBehaviour, ISceneController
             int size = FruitsItems.Length;
             for (int i = 0; i < size; i++)
             {
-                _foodNames[VegetablesIcons.Length + i] = FruitsItems[i].name;
+                FoodNames[VegetablesIcons.Length + i] = FruitsItems[i].name;
                 _iconsItemsDict.Add(FruitsItems[i].name, new ImageItem(FruitsIcons[i], FruitsItems[i], "Fruit"));
             }
         }
@@ -102,6 +110,8 @@ public class TavernWorldController : MonoBehaviour, ISceneController
 
     public void CreateItemQuery(int option)
     {
+        _foodRequirements = new FoodRequirement[FOOD_REQUIREMENTS_SLOTS];
+        _currentFoodRequirementIndex = 0;
         List<string> usedNames = new List<string>();
         for (int i = 0; i < FOOD_REQUIREMENTS_SLOTS; i++)
         {
@@ -112,14 +122,14 @@ public class TavernWorldController : MonoBehaviour, ISceneController
             {
                 do
                 {
-                    nameValue = _foodNames[rnd.Next(0, VegetablesItems.Length)];
+                    nameValue = FoodNames[rnd.Next(0, VegetablesItems.Length)];
                 } while (usedNames.Contains(nameValue));
             }
             else if (option == 2)
             {
                 do
                 {
-                    nameValue = _foodNames[VegetablesItems.Length + rnd.Next(0, FruitsItems.Length)];
+                    nameValue = FoodNames[VegetablesItems.Length + rnd.Next(0, FruitsItems.Length)];
                 } while (usedNames.Contains(nameValue));
             }
             else
@@ -130,6 +140,50 @@ public class TavernWorldController : MonoBehaviour, ISceneController
             usedNames.Add(nameValue);
             _uiElements[i].image.sprite = _iconsItemsDict[nameValue].image;
             _uiElements[i].text.text = "x " + amount.ToString();
+        }
+    }
+
+    public FoodRequirement GetCurrentRequirement()
+    {
+        return _foodRequirements[_currentFoodRequirementIndex];
+    }
+
+    public void UpdateCurrentRequirement()
+    {
+        FoodRequirement currentFoodRequirement = _foodRequirements[_currentFoodRequirementIndex];
+        currentFoodRequirement.currentAmount += 1;
+        _uiElements[_currentFoodRequirementIndex].text.text = "x " + (currentFoodRequirement.requiredAmount - currentFoodRequirement.currentAmount).ToString();
+        if (currentFoodRequirement.currentAmount >= currentFoodRequirement.requiredAmount)
+        {
+            _uiElements[_currentFoodRequirementIndex].image.enabled = false;
+            _uiElements[_currentFoodRequirementIndex].text.enabled = false;
+            _currentFoodRequirementIndex++;
+            if (_currentFoodRequirementIndex >= FOOD_REQUIREMENTS_SLOTS)
+            {
+                if (_currentRound < 2)
+                {
+                    _currentRound = 2;
+                    CreateItemQuery(_currentRound);
+                }
+                else
+                {
+                    FinishScene();
+                }
+            }
+        }
+    }
+
+    public void ResetRequirements()
+    {
+        foreach(FoodRequirement req in _foodRequirements)
+        {
+            req.currentAmount = 0;
+        }
+
+        foreach(FoodRequirementUI reqUI in _uiElements)
+        {
+            reqUI.image.enabled = true;
+            reqUI.text.enabled = true;
         }
     }
 }

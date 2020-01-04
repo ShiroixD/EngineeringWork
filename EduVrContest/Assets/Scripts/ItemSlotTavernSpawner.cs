@@ -29,22 +29,21 @@ public class ItemSlotTavernSpawner : MonoBehaviour
     public void SpawnItem(int anchorNumber, GameObject obj)
     {
         GameObject spawnedObj = null;
-        switch (anchorNumber)
+        if (anchorNumber == 1)
         {
-            case 1:
-                {
-                    spawnedObj = Instantiate(obj, new Vector3(VegetablesAnchor.transform.position.x, VegetablesAnchor.transform.position.y, VegetablesAnchor.transform.position.z), Quaternion.identity);
-                    break;
-                }
-            case 2:
-                {
-                    spawnedObj = Instantiate(obj, new Vector3(FruitsAnchor.transform.position.x, FruitsAnchor.transform.position.y, FruitsAnchor.transform.position.z), Quaternion.identity);
-                    break;
-                }
-            default:
-                {
-                    break;
-                }
+            spawnedObj = Instantiate(obj, new Vector3(
+                VegetablesAnchor.transform.position.x,
+                VegetablesAnchor.transform.position.y,
+                VegetablesAnchor.transform.position.z),
+                Quaternion.identity);
+        }
+        else if (anchorNumber == 2)
+        {
+            spawnedObj = Instantiate(obj, new Vector3(
+                FruitsAnchor.transform.position.x,
+                FruitsAnchor.transform.position.y,
+                FruitsAnchor.transform.position.z),
+                Quaternion.identity);
         }
     }
 }

@@ -33,8 +33,14 @@ public class FigureItem : MonoBehaviour
     {
         if (collision.collider.tag == "Ground")
         {
+            _intObj.ignoreGrasping = true;
+            _intObj.ignoreContact = true;
+            _intObj.ignorePrimaryHover = true;
             transform.position = _itemSpawnLocation;
             _itemSlotSpawner.ShowEffect();
+            _intObj.ignoreGrasping = false;
+            _intObj.ignoreContact = false;
+            _intObj.ignorePrimaryHover = false;
             return;
         }
 

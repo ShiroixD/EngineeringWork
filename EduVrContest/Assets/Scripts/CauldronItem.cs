@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Leap.Unity.Interaction;
 
+[RequireComponent(typeof(InteractionBehaviour))]
 public class CauldronItem : MonoBehaviour
 {
     public FoodName FoodName;
     public GameObject Effect;
+    private InteractionBehaviour _intObj;
 
     void Start()
     {
+        _intObj = GetComponent<InteractionBehaviour>();
         ShowEffect();
     }
 
@@ -35,17 +39,33 @@ public class CauldronItem : MonoBehaviour
         StartCoroutine("EffectDelay");
     }
 
-    void Disappear()
+    void DisappearLater()
     {
         StartCoroutine(DelayedDisappear(3.0f));
+    }
+
+    void DisappearNow()
+    {
+        Destroy(gameObject);
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Ground")
         {
-            Disappear();
+            _intObj.ignoreGrasping = true;
+            _intObj.ignoreContact = true;
+            _intObj.ignorePrimaryHover = true;
+            DisappearLater();
             return;
+        }
+
+        if (collision.collider.tag == "FoodContainer")
+        {
+            _intObj.ignoreGrasping = true;
+            _intObj.ignoreContact = true;
+            _intObj.ignorePrimaryHover = true;
+            DisappearNow();
         }
     }
 }
