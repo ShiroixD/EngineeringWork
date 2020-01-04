@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Leap.Unity.Interaction;
+using System;
 
 [RequireComponent(typeof(InteractionBehaviour))]
 public class CauldronItem : MonoBehaviour
@@ -51,6 +52,9 @@ public class CauldronItem : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        //Debug.Log("My item tag: " + gameObject.tag);
+        //Debug.Log("My item name: " + FoodName.ToString());
+        //Debug.Log("Coll tag: " + collision.collider.tag);
         if (collision.collider.tag == "Ground")
         {
             _intObj.ignoreGrasping = true;
@@ -60,12 +64,12 @@ public class CauldronItem : MonoBehaviour
             return;
         }
 
-        if (collision.collider.tag == "FoodContainer")
-        {
-            _intObj.ignoreGrasping = true;
-            _intObj.ignoreContact = true;
-            _intObj.ignorePrimaryHover = true;
-            DisappearNow();
-        }
+        //if (collision.collider.tag == "FoodContainer")
+        //{
+        //    _intObj.ignoreGrasping = true;
+        //    _intObj.ignoreContact = true;
+        //    _intObj.ignorePrimaryHover = true;
+        //    DisappearNow();
+        //}
     }
 }

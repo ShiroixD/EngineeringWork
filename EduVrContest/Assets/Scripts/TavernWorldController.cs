@@ -45,6 +45,11 @@ public class TavernWorldController : MonoBehaviour, ISceneController
         {
             CreateItemQuery(2);
         }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            UpdateCurrentRequirement();
+        }
     }
 
     public void InitializeScene()
@@ -140,6 +145,12 @@ public class TavernWorldController : MonoBehaviour, ISceneController
             usedNames.Add(nameValue);
             _uiElements[i].image.sprite = _iconsItemsDict[nameValue].image;
             _uiElements[i].text.text = "x " + amount.ToString();
+
+            foreach (FoodRequirementUI reqUI in _uiElements)
+            {
+                reqUI.image.enabled = true;
+                reqUI.text.enabled = true;
+            }
         }
     }
 
@@ -150,40 +161,46 @@ public class TavernWorldController : MonoBehaviour, ISceneController
 
     public void UpdateCurrentRequirement()
     {
+        Debug.Log("Round: " + _currentRound.ToString());
         FoodRequirement currentFoodRequirement = _foodRequirements[_currentFoodRequirementIndex];
         currentFoodRequirement.currentAmount += 1;
-        _uiElements[_currentFoodRequirementIndex].text.text = "x " + (currentFoodRequirement.requiredAmount - currentFoodRequirement.currentAmount).ToString();
+        _uiElements[_currentFoodRequirementIndex].text.text = "x " + 
+            (currentFoodRequirement.requiredAmount - currentFoodRequirement.currentAmount).ToString();
         if (currentFoodRequirement.currentAmount >= currentFoodRequirement.requiredAmount)
         {
             _uiElements[_currentFoodRequirementIndex].image.enabled = false;
             _uiElements[_currentFoodRequirementIndex].text.enabled = false;
             _currentFoodRequirementIndex++;
-            if (_currentFoodRequirementIndex >= FOOD_REQUIREMENTS_SLOTS)
+        }
+        if (_currentFoodRequirementIndex >= FOOD_REQUIREMENTS_SLOTS)
+        {
+            if (_currentRound == 1)
             {
-                if (_currentRound < 2)
-                {
-                    _currentRound = 2;
-                    CreateItemQuery(_currentRound);
-                }
-                else
-                {
-                    FinishScene();
-                }
+                _currentFoodRequirementIndex = 0;
+                _currentRound = 2;
+                CreateItemQuery(_currentRound);
+            }
+            else if (_currentRound == 2)
+            {
+                FinishScene();
             }
         }
     }
 
     public void ResetRequirements()
     {
-        foreach(FoodRequirement req in _foodRequirements)
+        for (int i = 0; i < _foodRequirements.Length; i++)
         {
+            FoodRequirement req = _foodRequirements[i];
+            Debug.Log("Req amount: " + req.requiredAmount);
             req.currentAmount = 0;
+            _uiElements[i].text.text = "x " + req.requiredAmount.ToString();
         }
-
         foreach(FoodRequirementUI reqUI in _uiElements)
         {
             reqUI.image.enabled = true;
             reqUI.text.enabled = true;
         }
+        _currentFoodRequirementIndex = 0;
     }
 }

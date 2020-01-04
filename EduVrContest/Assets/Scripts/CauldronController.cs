@@ -19,19 +19,23 @@ public class CauldronController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        CauldronItem item = collision.collider.gameObject.GetComponent<CauldronItem>();
-        string collFoodNameStr = Enum.GetName(typeof(FoodName), 
-            collision.collider.gameObject.GetComponent<CauldronItem>().FoodName);
-        FoodRequirement foodReq = WorldController.GetCurrentRequirement();
-        if (collFoodNameStr.Equals(foodReq.name))
+        if (collision.collider.tag.Equals("Item"))
         {
-            WorldController.UpdateCurrentRequirement();
-            return;
-        }
-        List<string> foodNames = new List<string>(WorldController.FoodNames);
-        if (foodNames.Contains(collFoodNameStr))
-        {
-            WorldController.ResetRequirements();
+            CauldronItem item = collision.collider.gameObject.GetComponent<CauldronItem>();
+            string collFoodNameStr = collision.collider.gameObject.GetComponent<CauldronItem>().FoodName.ToString();
+            FoodRequirement foodReq = WorldController.GetCurrentRequirement();
+            //Debug.Log("My cauldron tag: " + gameObject.tag);
+            //Debug.Log("Item tag: " + collision.collider.tag);
+            //Debug.Log("Item name: " + collFoodNameStr);
+            if (collFoodNameStr.Equals(foodReq.name))
+            {
+                WorldController.UpdateCurrentRequirement();
+                return;
+            }
+            else
+            {
+                WorldController.ResetRequirements();
+            }
         }
     }
 }

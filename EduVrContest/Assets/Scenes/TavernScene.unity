@@ -5039,6 +5039,7 @@ GameObject:
   - component: {fileID: 259074381}
   - component: {fileID: 259074382}
   - component: {fileID: 259074383}
+  - component: {fileID: 259074384}
   m_Layer: 0
   m_Name: Collider
   m_TagString: FoodContainer
@@ -5085,7 +5086,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f59b33b0a1c64b4786dc8318056b46a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WorldController: {fileID: 0}
+  WorldController: {fileID: 431209463}
+--- !u!54 &259074384
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259074380}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &260506540
 GameObject:
   m_ObjectHideFlags: 0
@@ -5640,7 +5657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 257747a8e40203d4bab1476dfc7c55c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FoodRequirementsMaxAmount: 10
+  FoodRequirementsMaxAmount: 2
   PlayerHelper: {fileID: 4236459396409651176}
   ItemSpawner: {fileID: 1211493144}
   VegetablesIcons:
@@ -21612,6 +21629,90 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330529754}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1332262488
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4416048096704588412, guid: 93237591ea67c5f4397a4ba6e13476e4,
+        type: 3}
+      propertyPath: m_Name
+      value: Cucumber
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416048096704588412, guid: 93237591ea67c5f4397a4ba6e13476e4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416048096704362076, guid: 93237591ea67c5f4397a4ba6e13476e4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.926
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416048096704362076, guid: 93237591ea67c5f4397a4ba6e13476e4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.385
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416048096704362076, guid: 93237591ea67c5f4397a4ba6e13476e4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.201
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416048096704362076, guid: 93237591ea67c5f4397a4ba6e13476e4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416048096704362076, guid: 93237591ea67c5f4397a4ba6e13476e4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416048096704362076, guid: 93237591ea67c5f4397a4ba6e13476e4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416048096704362076, guid: 93237591ea67c5f4397a4ba6e13476e4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416048096704362076, guid: 93237591ea67c5f4397a4ba6e13476e4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416048096704362076, guid: 93237591ea67c5f4397a4ba6e13476e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416048096704362076, guid: 93237591ea67c5f4397a4ba6e13476e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416048096704362076, guid: 93237591ea67c5f4397a4ba6e13476e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6804766713437814741, guid: 93237591ea67c5f4397a4ba6e13476e4,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6804766713437814741, guid: 93237591ea67c5f4397a4ba6e13476e4,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 93237591ea67c5f4397a4ba6e13476e4, type: 3}
 --- !u!1 &1338821425
 GameObject:
   m_ObjectHideFlags: 0
@@ -36776,7 +36877,7 @@ Transform:
   m_GameObject: {fileID: 1850105890}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0.09, y: 1.1187501, z: 0.05}
-  m_LocalScale: {x: 2.7685637, y: 0.875, z: 2.5871873}
+  m_LocalScale: {x: 2.7685637, y: 0.732725, z: 2.5871873}
   m_Children:
   - {fileID: 314212962}
   m_Father: {fileID: 1975331665}
@@ -41739,7 +41840,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1975024143}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.9882255, y: -1.3753055, z: 0.08030254}
+  m_LocalPosition: {x: -0.288, y: -0.804, z: -0.329}
   m_LocalScale: {x: 0.38652024, y: 0.8, z: 0.36119816}
   m_Children:
   - {fileID: 1849724836}
@@ -42023,7 +42124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2063493615}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.020774456, y: -1.3753055, z: 0.40930253}
+  m_LocalPosition: {x: 0.086, y: -0.804, z: 1.06}
   m_LocalScale: {x: 0.38652024, y: 0.8, z: 0.24333198}
   m_Children:
   - {fileID: 1584454011}
@@ -42160,7 +42261,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2127063009}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.098181, y: -1.3834919, z: -0.19613993}
+  m_LocalPosition: {x: 0.919, y: -0.95, z: -0.19613993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6395821957641885660}
