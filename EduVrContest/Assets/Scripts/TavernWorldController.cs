@@ -50,6 +50,11 @@ public class TavernWorldController : MonoBehaviour, ISceneController
         {
             UpdateCurrentRequirement();
         }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ResetRequirements();
+        }
     }
 
     public void InitializeScene()
@@ -161,28 +166,33 @@ public class TavernWorldController : MonoBehaviour, ISceneController
 
     public void UpdateCurrentRequirement()
     {
-        Debug.Log("Round: " + _currentRound.ToString());
-        FoodRequirement currentFoodRequirement = _foodRequirements[_currentFoodRequirementIndex];
-        currentFoodRequirement.currentAmount += 1;
-        _uiElements[_currentFoodRequirementIndex].text.text = "x " + 
-            (currentFoodRequirement.requiredAmount - currentFoodRequirement.currentAmount).ToString();
-        if (currentFoodRequirement.currentAmount >= currentFoodRequirement.requiredAmount)
+        if (_currentRound < 3)
         {
-            _uiElements[_currentFoodRequirementIndex].image.enabled = false;
-            _uiElements[_currentFoodRequirementIndex].text.enabled = false;
-            _currentFoodRequirementIndex++;
-        }
-        if (_currentFoodRequirementIndex >= FOOD_REQUIREMENTS_SLOTS)
-        {
-            if (_currentRound == 1)
+            Debug.Log("Round: " + _currentRound.ToString());
+            FoodRequirement currentFoodRequirement = _foodRequirements[_currentFoodRequirementIndex];
+            currentFoodRequirement.currentAmount += 1;
+            _uiElements[_currentFoodRequirementIndex].text.text = "x " +
+                (currentFoodRequirement.requiredAmount - currentFoodRequirement.currentAmount).ToString();
+            if (currentFoodRequirement.currentAmount >= currentFoodRequirement.requiredAmount)
             {
-                _currentFoodRequirementIndex = 0;
-                _currentRound = 2;
-                CreateItemQuery(_currentRound);
+                _uiElements[_currentFoodRequirementIndex].image
+                    .transform.parent.gameObject.SetActive(false);
+                _currentFoodRequirementIndex++;
             }
-            else if (_currentRound == 2)
+            if (_currentFoodRequirementIndex >= FOOD_REQUIREMENTS_SLOTS)
             {
-                FinishScene();
+                if (_currentRound == 1)
+                {
+                    _currentFoodRequirementIndex = 0;
+                    _currentRound = 2;
+                    ResetRequirements();
+                    CreateItemQuery(_currentRound);
+                }
+                else if (_currentRound == 2)
+                {
+                    _currentRound = 3;
+                    FinishScene();
+                }
             }
         }
     }
@@ -192,14 +202,12 @@ public class TavernWorldController : MonoBehaviour, ISceneController
         for (int i = 0; i < _foodRequirements.Length; i++)
         {
             FoodRequirement req = _foodRequirements[i];
-            Debug.Log("Req amount: " + req.requiredAmount);
             req.currentAmount = 0;
             _uiElements[i].text.text = "x " + req.requiredAmount.ToString();
         }
         foreach(FoodRequirementUI reqUI in _uiElements)
         {
-            reqUI.image.enabled = true;
-            reqUI.text.enabled = true;
+            reqUI.image.transform.parent.gameObject.SetActive(true);
         }
         _currentFoodRequirementIndex = 0;
     }
