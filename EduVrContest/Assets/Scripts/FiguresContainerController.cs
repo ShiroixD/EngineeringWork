@@ -5,10 +5,12 @@ using Leap.Unity.Interaction;
 
 public class FiguresContainerController : MonoBehaviour
 {
-    public ItemSlotSpawner ItemSlotSpawner;
+    public ItemSlotForestSpawner ItemSlotSpawner;
     public GameObject Cube;
     public GameObject ShapeHandlers;
     public GameObject Effect;
+    public PlayerHelper PlayerHelper;
+
     void Start()
     {
         
@@ -25,6 +27,7 @@ public class FiguresContainerController : MonoBehaviour
     void Disappear()
     {
         gameObject.SetActive(false);
+        PlayerHelper.ReturnToControlRoom();
     }
 
     void DisableInteractiveChildrenBehaviours(Transform objectTransform)
@@ -52,7 +55,6 @@ public class FiguresContainerController : MonoBehaviour
 
     public void ShowEffect()
     {
-
         DisableInteractiveChildrenBehaviours(ShapeHandlers.transform);
         Cube.SetActive(false);
         ShapeHandlers.SetActive(false);
