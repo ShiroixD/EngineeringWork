@@ -15,6 +15,7 @@ public class SchoolWorldController : MonoBehaviour, ISceneController
     public SpriteRenderer TaskImage;
     public TextMeshPro CorrectAnswerText;
     public GameObject TaskLabel;
+    public GameObject Congratulations;
     private int TASKS_LIMIT = 10;
     private int ANSWERS_AMOUNT = 3;
     private System.Random _rnd = new System.Random();
@@ -63,7 +64,14 @@ public class SchoolWorldController : MonoBehaviour, ISceneController
         Buttons[0].transform.parent.gameObject.SetActive(false);
         TaskImage.gameObject.SetActive(false);
         CorrectAnswerText.text = "";
+        Congratulations.SetActive(true);
         GameObject.FindWithTag("GameManager").GetComponent<GameManager>().CompletedWorld("School");
+        StartCoroutine(DelayedReturn(5.0f));
+    }
+
+    IEnumerator DelayedReturn(float sec)
+    {
+        yield return new WaitForSeconds(sec);
         PlayerHelper.ReturnToControlRoom();
     }
 
