@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TavernScene.unity
     guid: 082da21d815ad8b488cd9ac5b1603bb0
+  - enabled: 1
+    path: Assets/Scenes/SchoolScene.unity
+    guid: 5714ddedf3468874e9495de577991874
   m_configObjects: {}

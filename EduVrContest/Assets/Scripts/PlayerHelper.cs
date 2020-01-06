@@ -40,8 +40,8 @@ public class PlayerHelper : MonoBehaviour
         _gameManager.LoadGame("Tavern");
     }
 
-    public void GoToLibrary()
+    public void GoToSchool()
     {
-
+        _gameManager.LoadGame("School");
     }
 }

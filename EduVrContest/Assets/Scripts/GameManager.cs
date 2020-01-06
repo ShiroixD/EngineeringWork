@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
         _gameSceneNameMap.Add("ControlRoom", "ControlRoomScene");
         _gameSceneNameMap.Add("Forest", "ForestScene");
         _gameSceneNameMap.Add("Tavern", "TavernScene");
+        _gameSceneNameMap.Add("School", "SchoolScene");
     }
     void Start()
     {
