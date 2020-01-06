@@ -180,7 +180,7 @@ PrefabInstance:
     - target: {fileID: 114193398573130750, guid: df84af96020c94b4695aec5c3427db16,
         type: 3}
       propertyPath: _OnUnpress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToLibrary
+      value: GoToSchool
       objectReference: {fileID: 0}
     - target: {fileID: 114193398573130750, guid: df84af96020c94b4695aec5c3427db16,
         type: 3}
@@ -989,7 +989,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1239764547}
   m_Layer: 0
-  m_Name: LibraryGameButton
+  m_Name: SchoolGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

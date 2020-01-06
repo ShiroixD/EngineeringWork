@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Leap.Unity.Interaction;
 
 public class SchoolWorldController : MonoBehaviour, ISceneController
 {
@@ -11,6 +13,8 @@ public class SchoolWorldController : MonoBehaviour, ISceneController
     public GameObject[] Bars;
     public GameObject[] Buttons;
     public SpriteRenderer TaskImage;
+    public TextMeshPro CorrectAnswerText;
+    public GameObject TaskLabel;
     private int TASKS_LIMIT = 10;
     private int ANSWERS_AMOUNT = 3;
     private System.Random _rnd = new System.Random();
@@ -33,6 +37,17 @@ public class SchoolWorldController : MonoBehaviour, ISceneController
         {
             GiveTask();
         }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Bars[_score].SetActive(true);
+            _score++;
+            if (_score >= TASKS_LIMIT)
+            {
+                FinishScene();
+            }
+            GiveTask();
+        }
     }
 
     public void InitializeScene()
@@ -44,16 +59,19 @@ public class SchoolWorldController : MonoBehaviour, ISceneController
 
     public void FinishScene()
     {
+        TaskLabel.SetActive(false);
+        Buttons[0].transform.parent.gameObject.SetActive(false);
+        TaskImage.gameObject.SetActive(false);
+        CorrectAnswerText.text = "";
         PlayerHelper.ReturnToControlRoom();
     }
 
-    public Color hexToRgb(int number)
+    public Color HexToColor(int number)
     {
-        var r = (number >> 16) & 255;
-        var g = (number >> 8) & 255;
-        var b = number & 255;
-
-        return new Color(r, g, b);
+        int r = (number >> 16) & 255;
+        int g = (number >> 8) & 255;
+        int b = number & 255;
+        return new Color(r / 255.0f, g / 255.0f, b / 255.0f);
     }
 
     public void GiveTask()
@@ -90,15 +108,26 @@ public class SchoolWorldController : MonoBehaviour, ISceneController
             }
         }
         TaskImage.sprite = IconsSprites[_currentTaskId];
+        CorrectAnswerText.text = "";
         for (int i = 0; i < Buttons.Length; i++)
         {
-            Buttons[i].transform.Find("Answer").gameObject.
-                GetComponent<TextMesh>().text = availableAnswers[i];
+            Buttons[i].transform.Find("BackCube").
+                gameObject.transform.Find("FrontCube").
+                gameObject.transform.Find("Answer").
+                gameObject.GetComponent<TextMeshPro>().text = availableAnswers[i];
         }
     }
 
     public void GiveAnswer(int number)
     {
+        StartCoroutine(CheckAnswer(number));
+    }
+
+    IEnumerator CheckAnswer(int number)
+    {
+        BlockButtons();
+        yield return new WaitForSeconds(2.0f);
+        CorrectAnswerText.text = IconsNames[_currentTaskId];
         GameObject button = Buttons[number];
         if (number == _currentCorrectAnswear)
         {
@@ -106,11 +135,51 @@ public class SchoolWorldController : MonoBehaviour, ISceneController
             _score++;
             button.transform.Find("BackCube").
                 gameObject.transform.Find("FrontCube").
-                gameObject.GetComponent<Renderer>().material.color = hexToRgb(BUTTON_GREEN_COLOR);
+                gameObject.GetComponent<Renderer>().material.color = HexToColor(BUTTON_GREEN_COLOR);
+            yield return new WaitForSeconds(4.0f);
+            button.transform.Find("BackCube").
+                gameObject.transform.Find("FrontCube").
+                gameObject.GetComponent<Renderer>().material.color = HexToColor(BUTTON_DEFAULT_COLOR);
+            if (_score >= TASKS_LIMIT)
+            {
+                FinishScene();
+            }
+            else
+            {
+                GiveTask();
+            }
         }
         else
         {
+            button.transform.Find("BackCube").
+                gameObject.transform.Find("FrontCube").
+                gameObject.GetComponent<Renderer>().material.color = HexToColor(BUTTON_RED_COLOR);
+            yield return new WaitForSeconds(3.0f);
+            button.transform.Find("BackCube").
+                gameObject.transform.Find("FrontCube").
+                gameObject.GetComponent<Renderer>().material.color = HexToColor(BUTTON_DEFAULT_COLOR);
+            GiveTask();
+        }
+        UnlockButtons();
+    }
 
+    private void BlockButtons()
+    {
+        foreach(GameObject btn in Buttons)
+        {
+            InteractionBehaviour behaviour = btn.GetComponent<InteractionBehaviour>();
+            behaviour.ignoreContact = true;
+            behaviour.ignorePrimaryHover = true;
+        }
+    }
+
+    private void UnlockButtons()
+    {
+        foreach (GameObject btn in Buttons)
+        {
+            InteractionBehaviour behaviour = btn.GetComponent<InteractionBehaviour>();
+            behaviour.ignoreContact = false;
+            behaviour.ignorePrimaryHover = false;
         }
     }
 }
