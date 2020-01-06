@@ -16,6 +16,7 @@ public class TavernWorldController : MonoBehaviour, ISceneController
     public Image[] FoodUiImages;
     public Text[] FoodUiTexts;
     public string[] FoodNames;
+    public GameObject Congratulations;
 
     private System.Random rnd = new System.Random();
     private Dictionary<string, ImageItem> _iconsItemsDict;
@@ -67,6 +68,14 @@ public class TavernWorldController : MonoBehaviour, ISceneController
 
     public void FinishScene()
     {
+        Congratulations.SetActive(true);
+        GameObject.FindWithTag("GameManager").GetComponent<GameManager>().CompletedWorld("Tavern");
+        StartCoroutine(DelayedReturn(5.0f));
+    }
+
+    IEnumerator DelayedReturn(float sec)
+    {
+        yield return new WaitForSeconds(sec);
         PlayerHelper.ReturnToControlRoom();
     }
 
@@ -210,5 +219,16 @@ public class TavernWorldController : MonoBehaviour, ISceneController
             reqUI.image.transform.parent.gameObject.SetActive(true);
         }
         _currentFoodRequirementIndex = 0;
+    }
+
+    public void ClearRemainingFood()
+    {
+        Debug.Log("Czyszczenie start ...");
+        List<GameObject> items = new List<GameObject>(GameObject.FindGameObjectsWithTag("Item"));
+        foreach(GameObject item in items)
+        {
+            item.GetComponent<CauldronItem>().DisappearNow();
+        }
+        Debug.Log("Czyszczenie stop ...");
     }
 }

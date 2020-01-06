@@ -27,7 +27,7 @@ public class FiguresContainerController : MonoBehaviour
     void Disappear()
     {
         gameObject.SetActive(false);
-        PlayerHelper.ReturnToControlRoom();
+        GameObject.FindWithTag("GameController").GetComponent<ForestWorldController>().FinishScene();
     }
 
     void DisableInteractiveChildrenBehaviours(Transform objectTransform)
