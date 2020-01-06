@@ -40,12 +40,12 @@ public class CauldronItem : MonoBehaviour
         StartCoroutine("EffectDelay");
     }
 
-    void DisappearLater()
+    public void DisappearLater()
     {
         StartCoroutine(DelayedDisappear(3.0f));
     }
 
-    void DisappearNow()
+    public void DisappearNow()
     {
         Destroy(gameObject);
     }

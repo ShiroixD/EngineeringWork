@@ -212,4 +212,15 @@ public class TavernWorldController : MonoBehaviour, ISceneController
         }
         _currentFoodRequirementIndex = 0;
     }
+
+    public void ClearRemainingFood()
+    {
+        Debug.Log("Czyszczenie start ...");
+        List<GameObject> items = new List<GameObject>(GameObject.FindGameObjectsWithTag("Item"));
+        foreach(GameObject item in items)
+        {
+            item.GetComponent<CauldronItem>().DisappearNow();
+        }
+        Debug.Log("Czyszczenie stop ...");
+    }
 }
