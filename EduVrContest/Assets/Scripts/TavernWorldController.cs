@@ -67,6 +67,7 @@ public class TavernWorldController : MonoBehaviour, ISceneController
 
     public void FinishScene()
     {
+        GameObject.FindWithTag("GameManager").GetComponent<GameManager>().CompletedWorld("Tavern");
         PlayerHelper.ReturnToControlRoom();
     }
 

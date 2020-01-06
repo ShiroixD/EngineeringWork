@@ -5,16 +5,21 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private Dictionary<string, string> _gameSceneNameMap;
+    private Dictionary<string, bool> _completedWorlds;
     private string _currentGameName;
     private SubSceneManager _subSceneManager;
 
     void Awake()
     {
         _gameSceneNameMap = new Dictionary<string, string>();
+        _completedWorlds = new Dictionary<string, bool>();
         _gameSceneNameMap.Add("ControlRoom", "ControlRoomScene");
         _gameSceneNameMap.Add("Forest", "ForestScene");
         _gameSceneNameMap.Add("Tavern", "TavernScene");
         _gameSceneNameMap.Add("School", "SchoolScene");
+        _completedWorlds.Add("Forest", false);
+        _completedWorlds.Add("Tavern", false);
+        _completedWorlds.Add("School", false);
     }
     void Start()
     {
@@ -25,14 +30,29 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             LoadGame("ControlRoom");
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.H))
         {
             ReloadGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            LoadGame("Forest");
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            LoadGame("Tavern");
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadGame("School");
         }
     }
 
@@ -56,5 +76,15 @@ public class GameManager : MonoBehaviour
     public void ShowInfo()
     {
 
+    }
+
+    public void CompletedWorld(string name)
+    {
+        _completedWorlds[name] = true;
+    }
+
+    public bool CheckIfWorldCompleted(string name)
+    {
+        return _completedWorlds[name];
     }
 }

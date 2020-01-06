@@ -63,6 +63,7 @@ public class SchoolWorldController : MonoBehaviour, ISceneController
         Buttons[0].transform.parent.gameObject.SetActive(false);
         TaskImage.gameObject.SetActive(false);
         CorrectAnswerText.text = "";
+        GameObject.FindWithTag("GameManager").GetComponent<GameManager>().CompletedWorld("School");
         PlayerHelper.ReturnToControlRoom();
     }
 

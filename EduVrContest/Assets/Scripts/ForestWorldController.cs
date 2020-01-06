@@ -23,6 +23,7 @@ public class ForestWorldController : MonoBehaviour, ISceneController
 
     public void FinishScene()
     {
+        GameObject.FindWithTag("GameManager").GetComponent<GameManager>().CompletedWorld("Forest");
         PlayerHelper.ReturnToControlRoom();
     }
 }
