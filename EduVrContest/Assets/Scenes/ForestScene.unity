@@ -119,6 +119,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3417656139277957226}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &134182822 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3513728069192764805, guid: bb98b63dde9ce7e4a876dae38504dd22,
+    type: 3}
+  m_PrefabInstance: {fileID: 1141375544}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &143587716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1116,6 +1122,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3417656139277957226}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1105365625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 598407137004008977, guid: bb98b63dde9ce7e4a876dae38504dd22,
+    type: 3}
+  m_PrefabInstance: {fileID: 1141375544}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1141375544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1313,6 +1325,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -5.508972
       objectReference: {fileID: 0}
+    - target: {fileID: 4236459396694998983, guid: bb98b63dde9ce7e4a876dae38504dd22,
+        type: 3}
+      propertyPath: controlRoomTween
+      value: 
+      objectReference: {fileID: 1105365625}
+    - target: {fileID: 4236459396694998983, guid: bb98b63dde9ce7e4a876dae38504dd22,
+        type: 3}
+      propertyPath: resetGameTween
+      value: 
+      objectReference: {fileID: 1832663249}
+    - target: {fileID: 4236459396694998983, guid: bb98b63dde9ce7e4a876dae38504dd22,
+        type: 3}
+      propertyPath: gameInfoTween
+      value: 
+      objectReference: {fileID: 134182822}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb98b63dde9ce7e4a876dae38504dd22, type: 3}
 --- !u!4 &1141375545 stripped
@@ -1675,6 +1702,12 @@ MonoBehaviour:
   _enabledForBuild: 0
   _sphereMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   _gizmoShader: {fileID: 4800000, guid: 309635e4933310a4d98f0e016c806769, type: 3}
+--- !u!1 &1832663249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8058589250238282628, guid: bb98b63dde9ce7e4a876dae38504dd22,
+    type: 3}
+  m_PrefabInstance: {fileID: 1141375544}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1859244810
 GameObject:
   m_ObjectHideFlags: 0

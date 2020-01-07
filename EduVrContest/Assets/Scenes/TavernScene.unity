@@ -55994,6 +55994,21 @@ PrefabInstance:
       propertyPath: spawner
       value: 
       objectReference: {fileID: 1211493144}
+    - target: {fileID: 1152440117891996594, guid: d1c68e67b845d7045872d5f88d853b08,
+        type: 3}
+      propertyPath: HandsAnchorsObjects.Array.data[6]
+      value: 
+      objectReference: {fileID: 1294724882765733}
+    - target: {fileID: 1152440117891996594, guid: d1c68e67b845d7045872d5f88d853b08,
+        type: 3}
+      propertyPath: HandsAnchorsObjects.Array.data[7]
+      value: 
+      objectReference: {fileID: 1694854224010181}
+    - target: {fileID: 1152440117891996594, guid: d1c68e67b845d7045872d5f88d853b08,
+        type: 3}
+      propertyPath: HandsAnchorsObjects.Array.data[8]
+      value: 
+      objectReference: {fileID: 1284442471990829}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1c68e67b845d7045872d5f88d853b08, type: 3}
 --- !u!114 &4236459396409651176 stripped
