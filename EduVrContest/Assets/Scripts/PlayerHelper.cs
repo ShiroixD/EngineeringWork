@@ -39,7 +39,7 @@ public class PlayerHelper : MonoBehaviour
 
     public void ShowInfoTips()
     {
-
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<ISceneController>().ShowGameInfo();
     }
 
     public void GoToForest()

@@ -17,13 +17,15 @@ public class TavernWorldController : MonoBehaviour, ISceneController
     public Text[] FoodUiTexts;
     public string[] FoodNames;
     public GameObject Congratulations;
-
+    public GameObject GameInfo;
+    public GameObject ObjectToHideWhenInfo;
     private System.Random rnd = new System.Random();
     private Dictionary<string, ImageItem> _iconsItemsDict;
     private FoodRequirement[] _foodRequirements;
     private int _currentFoodRequirementIndex;
     private FoodRequirementUI[] _uiElements;
     private int _currentRound;
+    private bool _showingInfo;
 
     void Awake()
     {
@@ -61,6 +63,7 @@ public class TavernWorldController : MonoBehaviour, ISceneController
     public void InitializeScene()
     {
         _currentRound = 1;
+        _showingInfo = false;
         ParseFoodIconsItems();
         ParseFoodUiImagesTexts();
         CreateItemQuery(1);
@@ -71,6 +74,37 @@ public class TavernWorldController : MonoBehaviour, ISceneController
         Congratulations.SetActive(true);
         GameObject.FindWithTag("GameManager").GetComponent<GameManager>().CompletedWorld("Tavern");
         StartCoroutine(DelayedReturn(5.0f));
+    }
+
+    public void ShowGameInfo()
+    {
+        if (!_showingInfo)
+        {
+            _showingInfo = true;
+            Vector3 pos = ObjectToHideWhenInfo.transform.position;
+            ObjectToHideWhenInfo.transform.position = new Vector3(pos.x, pos.y - 10.0f, pos.z);
+            List<GameObject> items = new List<GameObject>(GameObject.FindGameObjectsWithTag("Item"));
+            foreach(GameObject obj in items)
+            {
+                Vector3 objPos = obj.transform.position;
+                obj.transform.position = new Vector3(objPos.x, objPos.y - 10.0f, objPos.z);
+            }
+            GameInfo.SetActive(true);
+        }
+    }
+
+    public void HideGameInfo()
+    {
+        _showingInfo = false;
+        Vector3 pos = ObjectToHideWhenInfo.transform.position;
+        ObjectToHideWhenInfo.transform.position = new Vector3(pos.x, pos.y + 10.0f, pos.z);
+        List<GameObject> items = new List<GameObject>(GameObject.FindGameObjectsWithTag("Item"));
+        foreach (GameObject obj in items)
+        {
+            Vector3 objPos = obj.transform.position;
+            obj.transform.position = new Vector3(objPos.x, objPos.y + 10.0f, objPos.z);
+        }
+        GameInfo.SetActive(false);
     }
 
     IEnumerator DelayedReturn(float sec)

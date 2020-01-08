@@ -16,16 +16,19 @@ public class SchoolWorldController : MonoBehaviour, ISceneController
     public TextMeshPro CorrectAnswerText;
     public GameObject TaskLabel;
     public GameObject Congratulations;
-    private int TASKS_LIMIT = 10;
-    private int ANSWERS_AMOUNT = 3;
+    public GameObject GameInfo;
+    public GameObject ObjectToHideWhenInfo;
+    private const int BUTTON_DEFAULT_COLOR = 0xd0d0d0;
+    private const int BUTTON_GREEN_COLOR = 0x6ef864;
+    private const int BUTTON_RED_COLOR = 0xff675d;
+    private const int TASKS_LIMIT = 10;
+    private const int ANSWERS_AMOUNT = 3;
     private System.Random _rnd = new System.Random();
     private int _score;
     private int _currentTaskId;
     private int _currentCorrectAnswear;
     private List<int> _usedTasksIds;
-    private const int BUTTON_DEFAULT_COLOR = 0xd0d0d0;
-    private const int BUTTON_GREEN_COLOR = 0x6ef864;
-    private const int BUTTON_RED_COLOR = 0xff675d;
+    private bool _showingInfo;
 
     void Start()
     {
@@ -55,18 +58,39 @@ public class SchoolWorldController : MonoBehaviour, ISceneController
     {
         _score = 0;
         _usedTasksIds = new List<int>();
+        _showingInfo = false;
         GiveTask();
     }
 
     public void FinishScene()
     {
         TaskLabel.SetActive(false);
+        CorrectAnswerText.gameObject.SetActive(false);
         Buttons[0].transform.parent.gameObject.SetActive(false);
         TaskImage.gameObject.SetActive(false);
         CorrectAnswerText.text = "";
         Congratulations.SetActive(true);
         GameObject.FindWithTag("GameManager").GetComponent<GameManager>().CompletedWorld("School");
         StartCoroutine(DelayedReturn(5.0f));
+    }
+
+    public void ShowGameInfo()
+    {
+        if (!_showingInfo)
+        {
+            _showingInfo = true;
+            Vector3 pos = ObjectToHideWhenInfo.transform.position;
+            ObjectToHideWhenInfo.transform.position = new Vector3(pos.x, pos.y - 10.0f, pos.z);
+            GameInfo.SetActive(true);
+        }
+    }
+
+    public void HideGameInfo()
+    {
+        _showingInfo = false;
+        Vector3 pos = ObjectToHideWhenInfo.transform.position;
+        ObjectToHideWhenInfo.transform.position = new Vector3(pos.x, pos.y + 10.0f, pos.z);
+        GameInfo.SetActive(false);
     }
 
     IEnumerator DelayedReturn(float sec)

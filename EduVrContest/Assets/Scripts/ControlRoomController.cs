@@ -41,4 +41,14 @@ public class ControlRoomController : MonoBehaviour, ISceneController
     {
 
     }
+
+    public void ShowGameInfo()
+    {
+        
+    }
+
+    public void HideGameInfo()
+    {
+        
+    }
 }
