@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodName: 8
-  Effect: {fileID: 0}
+  Effect: {fileID: 680594939618613186}
 --- !u!1 &2999719681947092073
 GameObject:
   m_ObjectHideFlags: 0

@@ -24414,7 +24414,7 @@ MonoBehaviour:
   EffectAnchor1: {fileID: 314212961}
   EffectAnchor2: {fileID: 532392960}
   VegetablesAnchor: {fileID: 1656935858}
-  FruitsAnchor: {fileID: 587441947}
+  FruitsAnchor: {fileID: 1656935858}
 --- !u!1 &1219414267
 GameObject:
   m_ObjectHideFlags: 0
@@ -47149,7 +47149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &2066570052
 GameObject:
   m_ObjectHideFlags: 0
