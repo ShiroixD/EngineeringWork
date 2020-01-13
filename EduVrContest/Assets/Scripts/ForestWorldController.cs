@@ -6,10 +6,13 @@ public class ForestWorldController : MonoBehaviour, ISceneController
 {
     public PlayerHelper PlayerHelper;
     public GameObject Congratulations;
+    public GameObject GameInfo;
+    public GameObject[] Objects;
+    private bool _showingInfo;
 
     void Start()
     {
-        
+        InitializeScene();
     }
 
     void Update()
@@ -19,7 +22,7 @@ public class ForestWorldController : MonoBehaviour, ISceneController
 
     public void InitializeScene()
     {
-
+        _showingInfo = false;
     }
 
     public void FinishScene()
@@ -33,5 +36,31 @@ public class ForestWorldController : MonoBehaviour, ISceneController
     {
         yield return new WaitForSeconds(sec);
         PlayerHelper.ReturnToControlRoom();
+    }
+
+    public void ShowGameInfo()
+    {
+        if (!_showingInfo)
+        {
+            _showingInfo = true;
+            Objects[0] = GameObject.FindWithTag("Item");
+            for (int i = 0; i < Objects.Length; i++)
+            {
+                Vector3 pos = Objects[i].transform.position;
+                Objects[i].transform.position = new Vector3(pos.x, pos.y - 10.0f, pos.z);
+            }
+            GameInfo.SetActive(true);
+        }  
+    }
+
+    public void HideGameInfo()
+    {
+        _showingInfo = false;
+        for (int i = 0; i < Objects.Length; i++)
+        {
+            Vector3 pos = Objects[i].transform.position;
+            Objects[i].transform.position = new Vector3(pos.x, pos.y + 10.0f, pos.z);
+        }
+        GameInfo.SetActive(false);
     }
 }

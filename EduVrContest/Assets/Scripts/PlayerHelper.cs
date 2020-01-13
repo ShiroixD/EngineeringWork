@@ -1,18 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Leap.Unity.Animation;
 
 public class PlayerHelper : MonoBehaviour
 {
+    public GameObject[] HandsAnchorsObjects;
     private GameManager _gameManager;
     void Start()
     {
         _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        StartCoroutine(DelayedLeapHandsSetup());
     }
 
     void Update()
     {
         
+    }
+
+    private IEnumerator DelayedLeapHandsSetup()
+    {
+        yield return new WaitForSeconds(0.2f);
+        foreach(GameObject obj in HandsAnchorsObjects)
+        {
+            obj.SetActive(false);
+        }
     }
 
     public void ReturnToControlRoom()
@@ -27,7 +39,7 @@ public class PlayerHelper : MonoBehaviour
 
     public void ShowInfoTips()
     {
-
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<ISceneController>().ShowGameInfo();
     }
 
     public void GoToForest()

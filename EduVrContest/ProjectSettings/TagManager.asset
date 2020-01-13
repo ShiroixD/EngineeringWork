@@ -12,6 +12,7 @@ TagManager:
   - ItemSpawn
   - FiguresContainer
   - FoodContainer
+  - MusicManager
   layers:
   - Default
   - TransparentFX

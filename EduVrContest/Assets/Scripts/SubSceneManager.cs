@@ -10,6 +10,7 @@ public class SubSceneManager : MonoBehaviour
     private Scene? _currentSubScene;
     private GameObject _currentWorldController;
     private ISceneController _currentSubSceneController;
+    public MusicManager MusicManager;
     public ScreenFadeEffect ScreenFadeEffect;
     public bool ChangingScene;
 
@@ -44,8 +45,42 @@ public class SubSceneManager : MonoBehaviour
         }
     }
 
+    private string ConvertSceneNameToAlias(string sceneName)
+    {
+        string result = "";
+        switch(sceneName)
+        {
+            case "ControlRoomScene":
+                {
+                    result = "ControlRoom";
+                    break;
+                }
+            case "ForestScene":
+                {
+                    result = "Forest";
+                    break;
+                }
+            case "TavernScene":
+                {
+                    result = "Tavern";
+                    break;
+                }
+            case "SchoolScene":
+                {
+                    result = "School";
+                    break;
+                }
+            default:
+                {
+                    break;
+                }
+        }
+        return result;
+    }
+
     private IEnumerator LoadSubSceneAsync(string sceneName)
     {
+        MusicManager.PlayMusic(ConvertSceneNameToAlias(sceneName));
         if (_currentSubScene != null)
         {
             ChangingScene = true;

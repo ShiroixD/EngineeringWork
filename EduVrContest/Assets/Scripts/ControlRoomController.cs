@@ -5,7 +5,10 @@ using UnityEngine;
 public class ControlRoomController : MonoBehaviour, ISceneController
 {
     public GameObject[] Stars;
+    public GameObject GameInfo;
+    public GameObject ObjectToHideWhenInfo;
     private GameManager _gameManager;
+    private bool _showingInfo;
 
     void Start()
     {
@@ -40,5 +43,24 @@ public class ControlRoomController : MonoBehaviour, ISceneController
     public void FinishScene()
     {
 
+    }
+
+    public void ShowGameInfo()
+    {
+        if (!_showingInfo)
+        {
+            _showingInfo = true;
+            Vector3 pos = ObjectToHideWhenInfo.transform.position;
+            ObjectToHideWhenInfo.transform.position = new Vector3(pos.x, pos.y - 10.0f, pos.z);
+            GameInfo.SetActive(true);
+        }
+    }
+
+    public void HideGameInfo()
+    {
+        _showingInfo = false;
+        Vector3 pos = ObjectToHideWhenInfo.transform.position;
+        ObjectToHideWhenInfo.transform.position = new Vector3(pos.x, pos.y + 10.0f, pos.z);
+        GameInfo.SetActive(false);
     }
 }
