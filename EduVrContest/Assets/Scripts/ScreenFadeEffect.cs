@@ -8,6 +8,8 @@ public class ScreenFadeEffect : MonoBehaviour
     private Animator FadeEffectAnimator;
     public bool AnimationIsPlaying;
     public Image BlackScreenImage;
+    public MusicManager MusicManager;
+    public SubSceneManager SubSceneManager;
 
     private void Awake()
     {
@@ -42,6 +44,7 @@ public class ScreenFadeEffect : MonoBehaviour
     public void FadeOutEffect()
     {
         FadeEffectAnimator.SetTrigger("FadeOut");
+        StartCoroutine(MusicManager.DelayedMuteMusic());
     }
 
     public void FadeBlackEffect()

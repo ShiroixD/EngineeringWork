@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    public SubSceneManager _subSceneManager;
+    public SubSceneManager SubSceneManager;
     public AudioSource AudioPlayer;
     public AudioClip[] ForestMusic;
     public AudioClip[] TavernMusic;
@@ -23,15 +23,21 @@ public class MusicManager : MonoBehaviour
         
     }
 
-    IEnumerator DelayedMuteMusic()
+    public IEnumerator DelayedMuteMusic()
     {
         float volumeRate = 1.0f;
+        while (_musicIsChanging)
+        {
+            yield return new WaitForSeconds(0.001f);
+        }
+        _musicIsChanging = true;
         do
         {
-            volumeRate -= 0.1f;
+            volumeRate -= 0.05f;
             AudioPlayer.volume = volumeRate;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.05f);
         } while (volumeRate > 0.0f);
+        AudioPlayer.volume = 0.0f;
         _musicIsChanging = false;
     }
 
@@ -65,7 +71,10 @@ public class MusicManager : MonoBehaviour
                 }
             default:
                 {
-                    AudioPlayer.clip.UnloadAudioData();
+                    if (AudioPlayer.clip != null)
+                    {
+                        AudioPlayer.clip.UnloadAudioData();
+                    }
                     break;
                 }
 
@@ -78,17 +87,12 @@ public class MusicManager : MonoBehaviour
             volumeRate += 0.1f;
             AudioPlayer.volume = volumeRate;
         } while (volumeRate < 1.0f);
+        AudioPlayer.volume = 1.0f;
         _musicIsChanging = false;
     }
 
     IEnumerator MusicTransition(string worldName)
     {
-        while (_musicIsChanging)
-        {
-            yield return new WaitForSeconds(0.001f);
-        }
-        _musicIsChanging = true;
-        StartCoroutine(DelayedMuteMusic());
         while (_musicIsChanging)
         {
             yield return new WaitForSeconds(0.001f);

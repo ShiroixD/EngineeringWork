@@ -80,7 +80,6 @@ public class SubSceneManager : MonoBehaviour
 
     private IEnumerator LoadSubSceneAsync(string sceneName)
     {
-        MusicManager.PlayMusic(ConvertSceneNameToAlias(sceneName));
         if (_currentSubScene != null)
         {
             ChangingScene = true;
@@ -90,6 +89,7 @@ public class SubSceneManager : MonoBehaviour
         {
             yield return null;
         }
+        MusicManager.PlayMusic(ConvertSceneNameToAlias(sceneName));
         if (_scenesNames.Contains(sceneName))
         {
             ChangingScene = true;
@@ -97,7 +97,7 @@ public class SubSceneManager : MonoBehaviour
             asyncOperation.allowSceneActivation = false;
             while (!asyncOperation.isDone)
             {
-                if (!ScreenFadeEffect.AnimationIsPlaying)
+                if (!ScreenFadeEffect.AnimationIsPlaying && asyncOperation.progress >= 0.8f)
                 {
                     ScreenFadeEffect.FadeInEffect();
                     asyncOperation.allowSceneActivation = true;

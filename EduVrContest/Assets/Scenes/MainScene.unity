@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a8a93576906524aa7a2154c5ea6dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _subSceneManager: {fileID: 1153617748}
+  SubSceneManager: {fileID: 1153617748}
   AudioPlayer: {fileID: 467271923}
   ForestMusic:
   - {fileID: 8300000, guid: 3ccf1d0a2f576564db2e8704d98b0573, type: 3}
@@ -483,6 +483,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4612916118161240291, guid: 61b3946e0c6b02e4787e11ea71fbd2b1,
+        type: 3}
+      propertyPath: ScreenFadeEffect
+      value: 
+      objectReference: {fileID: 2091143858}
+    - target: {fileID: 4612916118161240291, guid: 61b3946e0c6b02e4787e11ea71fbd2b1,
+        type: 3}
+      propertyPath: MusicManager
+      value: 
+      objectReference: {fileID: 467271925}
     - target: {fileID: 4612916118161240300, guid: 61b3946e0c6b02e4787e11ea71fbd2b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -538,16 +548,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4612916118161240291, guid: 61b3946e0c6b02e4787e11ea71fbd2b1,
-        type: 3}
-      propertyPath: ScreenFadeEffect
-      value: 
-      objectReference: {fileID: 2091143858}
-    - target: {fileID: 4612916118161240291, guid: 61b3946e0c6b02e4787e11ea71fbd2b1,
-        type: 3}
-      propertyPath: MusicManager
-      value: 
-      objectReference: {fileID: 467271925}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61b3946e0c6b02e4787e11ea71fbd2b1, type: 3}
 --- !u!1 &2091143855
@@ -616,3 +616,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AnimationIsPlaying: 0
   BlackScreenImage: {fileID: 1044279929}
+  MusicManager: {fileID: 467271925}
+  SubSceneManager: {fileID: 1153617748}
