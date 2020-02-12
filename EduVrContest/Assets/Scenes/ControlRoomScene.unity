@@ -4814,7 +4814,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Music credits:'
+  m_text: Muzyka
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4883,10 +4883,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: -3.4140785, z: -22.968367, w: 0}
   m_textInfo:
     textComponent: {fileID: 1587498652}
-    characterCount: 14
+    characterCount: 6
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
