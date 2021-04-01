@@ -1,2 +1,5 @@
-# EngineeringWork
-Praca inżynierska na kierunku "Informatyka " w ramach specjalizacji "Technologie gierr i symulacji komputerowych" na wydziale FTIMS Politechniki Łódzkiej
+# EduVR
+EduVR is an educational game using VR environment. It consist of three stages with different task to fulfill. It requires VR headset and LeapMotion controller.
+
+Game engine: Unity 3D,
+Platform: PC, Windows
