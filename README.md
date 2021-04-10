@@ -1,7 +1,7 @@
 # EduVR
 **EduVR** is an **educational game** using **VR** environment. It consist of **three stages** with different task to fulfill. It requires VR **headset** and **LeapMotion** controller.
 
-Website: fabianfrontczak.com/eduvr/
+Website: http://fabianfrontczak.com/eduvr/
 
 Download: https://drive.google.com/file/u/1/d/1y0XcmtPRLBOYABfyPerstSl8Z1zWqRsM/view?usp=sharing
 
